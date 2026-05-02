@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use Telecom — Conectividade que sustenta o que não pode parar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F8;
+    --bg-alt:#F2EBEE;
+    --ink:#1A0010;
+    --ink-2:#3D1A2E;
+    --magenta:#E20074;
+    --magenta-deep:#8B0048;
+    --magenta-darker:#3D0020;
+    --magenta-light:#FFB3D9;
+    --magenta-bg:#FFE6F2;
+    --accent:#FF1A8C;
+    --muted:#7A6770;
+    --line:#1A001014;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter Tight',sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* TIPOGRAFIA */
+  .display{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:500;
+    line-height:0.95;
+    letter-spacing:-0.035em;
+    font-variation-settings:'opsz' 96;
+  }
+  .mono{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:24px;
+    height:1px;
+    background:var(--magenta);
+  }
+
+  /* NAVBAR */
+  nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    padding:18px 40px;
+    background:rgba(250,247,248,0.85);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1440px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:22px;
+    letter-spacing:-0.04em;
+    color:var(--ink);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo-dot{
+    width:8px;
+    height:8px;
+    background:var(--magenta);
+    border-radius:50%;
+    box-shadow:0 0 0 4px rgba(226,0,116,0.2);
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--ink-2);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--magenta);}
+  .nav-cta{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .btn{
+    padding:11px 20px;
+    border-radius:100px;
+    font-size:13px;
+    font-weight:500;
+    text-decoration:none;
+    transition:all 0.25s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .btn-ghost{
+    color:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--bg);}
+  .btn-primary{
+    background:var(--ink);
+    color:var(--bg);
+  }
+  .btn-primary:hover{background:var(--magenta); transform:translateY(-1px);}
+  .btn-magenta{
+    background:var(--magenta);
+    color:var(--white);
+    font-weight:600;
+    box-shadow:0 4px 20px rgba(226,0,116,0.25);
+  }
+  .btn-magenta:hover{background:var(--magenta-deep); transform:translateY(-1px); box-shadow:0 6px 24px rgba(226,0,116,0.35);}
+
+  /* HERO */
+  .hero{
+    padding:140px 40px 80px;
+    max-width:1440px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:end;
+    margin-top:60px;
+  }
+  .hero-headline{
+    font-size:clamp(56px, 8vw, 132px);
+  }
+  .hero-headline em{
+    font-style:italic;
+    font-family:'Bricolage Grotesque',serif;
+    color:var(--magenta);
+    font-weight:400;
+  }
+  .hero-meta{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .hero-desc{
+    font-size:18px;
+    line-height:1.5;
+    color:var(--ink-2);
+    max-width:440px;
+  }
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap;}
+  .hero-tag{
+    position:absolute;
+    top:120px;
+    right:40px;
+    border:1px solid var(--magenta);
+    padding:6px 14px;
+    border-radius:100px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    background:var(--magenta-bg);
+    color:var(--magenta-deep);
+  }
+  .hero-tag .pulse{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:var(--magenta);
+    border-radius:50%;
+    margin-right:8px;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(226,0,116,0.7);}
+    50%{box-shadow:0 0 0 8px rgba(226,0,116,0);}
+  }
+
+  /* HERO STATS BAR */
+  .hero-stats{
+    margin-top:80px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .stat{
+    padding:32px 24px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat-num{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:56px;
+    font-weight:500;
+    line-height:1;
+    letter-spacing:-0.04em;
+    color:var(--magenta);
+  }
+  .stat-num sup{
+    font-size:24px;
+    vertical-align:super;
+    margin-left:4px;
+  }
+  .stat-label{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:12px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+
+  /* SOLUÇÕES */
+  .section{
+    padding:120px 40px;
+    max-width:1440px;
+    margin:0 auto;
+  }
+  .section-header{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:60px;
+    margin-bottom:60px;
+    align-items:end;
+  }
+  .section-title{
+    font-size:clamp(40px, 5vw, 72px);
+    line-height:1;
+  }
+  .section-title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--magenta);
+  }
+  .section-desc{
+    font-size:17px;
+    color:var(--ink-2);
+    max-width:520px;
+    line-height:1.6;
+  }
+
+  .solucoes-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    border-radius:24px;
+    overflow:hidden;
+  }
+  .solucao{
+    background:var(--bg);
+    padding:48px 40px 40px;
+    position:relative;
+    transition:background 0.4s;
+    cursor:pointer;
+    min-height:380px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .solucao:hover{background:var(--magenta-bg);}
+  .solucao-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    color:var(--magenta);
+  }
+  .solucao-title{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:38px;
+    font-weight:500;
+    letter-spacing:-0.025em;
+    line-height:1.05;
+    margin:32px 0 16px;
+  }
+  .solucao-desc{
+    color:var(--ink-2);
+    font-size:15px;
+    line-height:1.55;
+    max-width:380px;
+  }
+  .solucao-features{
+    list-style:none;
+    margin-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .solucao-features li{
+    font-size:11px;
+    padding:5px 10px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-2);
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--bg);
+  }
+  .solucao-arrow{
+    position:absolute;
+    top:40px;
+    right:40px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.3s;
+  }
+  .solucao:hover .solucao-arrow{
+    background:var(--magenta);
+    color:var(--white);
+    border-color:var(--magenta);
+    transform:rotate(-45deg);
+  }
+
+  /* CASE FEATURE — WI-FI DO LEÃO */
+  .case-feature{
+    background:var(--magenta-darker);
+    color:var(--bg);
+    border-radius:32px;
+    padding:80px;
+    margin:0 40px;
+    max-width:1360px;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .case-bg{
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(226,0,116,0.4) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(255,26,140,0.15) 0%, transparent 50%);
+    pointer-events:none;
+  }
+  .case-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:80px;
+    align-items:center;
+  }
+  .case-eyebrow{
+    color:var(--magenta-light);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:24px;
+  }
+  .case-eyebrow::before{
+    content:"";
+    width:24px;
+    height:1px;
+    background:var(--magenta-light);
+  }
+  .case-title{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:clamp(36px, 5vw, 64px);
+    font-weight:500;
+    line-height:1;
+    letter-spacing:-0.03em;
+    margin-bottom:24px;
+  }
+  .case-title em{
+    font-style:italic;
+    color:var(--magenta-light);
+    font-weight:400;
+  }
+  .case-desc{
+    font-size:17px;
+    line-height:1.6;
+    color:#E8D4DD;
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .case-stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:32px;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,0.15);
+  }
+  .case-stat-num{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:48px;
+    font-weight:500;
+    line-height:1;
+    letter-spacing:-0.03em;
+    color:var(--magenta-light);
+  }
+  .case-stat-label{
+    font-size:13px;
+    color:#E8D4DD;
+    margin-top:8px;
+  }
+  .case-visual{
+    aspect-ratio:1;
+    border-radius:24px;
+    background:
+      conic-gradient(from 0deg, var(--magenta-deep) 0deg, var(--magenta) 90deg, var(--magenta-deep) 180deg, var(--magenta) 270deg, var(--magenta-deep) 360deg);
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,179,217,0.3);
+  }
+  .case-visual::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 24px,
+        rgba(255,255,255,0.04) 24px,
+        rgba(255,255,255,0.04) 25px
+      );
+  }
+  .stadium-label{
+    position:absolute;
+    bottom:32px;
+    left:32px;
+    color:var(--magenta-light);
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+  .stadium-label-big{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:var(--white);
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:96px;
+    font-weight:600;
+    letter-spacing:-0.04em;
+    text-align:center;
+    line-height:0.85;
+    text-shadow:0 4px 30px rgba(0,0,0,0.3);
+  }
+  .stadium-label-big small{
+    display:block;
+    font-size:14px;
+    font-weight:400;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--magenta-light);
+    margin-top:12px;
+    font-family:'JetBrains Mono',monospace;
+    text-shadow:none;
+  }
+
+  /* DIFERENCIAIS */
+  .diff-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    margin-top:48px;
+  }
+  .diff-card{
+    padding:40px 32px;
+    border:1px solid var(--ink);
+    border-radius:20px;
+    background:var(--bg);
+    position:relative;
+    transition:all 0.3s;
+  }
+  .diff-card:hover{
+    background:var(--ink);
+    color:var(--bg);
+    transform:translateY(-4px);
+    border-color:var(--ink);
+  }
+  .diff-card:hover .diff-icon-wrap{
+    background:var(--magenta);
+    border-color:var(--magenta);
+  }
+  .diff-card:hover .diff-icon{color:var(--white);}
+  .diff-icon-wrap{
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    border:1px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:24px;
+    transition:all 0.3s;
+  }
+  .diff-icon{font-size:24px; color:var(--magenta); transition:color 0.3s;}
+  .diff-title{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:12px;
+    letter-spacing:-0.02em;
+  }
+  .diff-desc{font-size:14px; line-height:1.55; color:var(--ink-2);}
+  .diff-card:hover .diff-desc{color:#E8D4DD;}
+
+  /* COBERTURA */
+  .cobertura{
+    background:var(--ink);
+    color:var(--bg);
+    padding:120px 40px;
+    margin:0;
+    position:relative;
+    overflow:hidden;
+  }
+  .cobertura::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 90% 10%, rgba(226,0,116,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(226,0,116,0.08) 0%, transparent 40%);
+    pointer-events:none;
+  }
+  .cobertura-inner{
+    max-width:1440px;
+    margin:0 auto;
+    position:relative;
+  }
+  .cobertura-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+  }
+  .cobertura-title{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:clamp(40px, 5vw, 72px);
+    font-weight:500;
+    line-height:1;
+    letter-spacing:-0.03em;
+    margin-bottom:24px;
+  }
+  .cobertura-title em{
+    color:var(--magenta-light);
+    font-style:italic;
+    font-weight:400;
+  }
+  .cobertura-desc{
+    color:#D4C4CC;
+    font-size:17px;
+    line-height:1.6;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .cidades{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    max-width:540px;
+  }
+  .cidade-tag{
+    padding:8px 16px;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:100px;
+    font-size:13px;
+    color:#D4C4CC;
+    transition:all 0.2s;
+  }
+  .cidade-tag.featured{
+    background:var(--magenta);
+    color:var(--white);
+    border-color:var(--magenta);
+    font-weight:600;
+  }
+  .cidade-tag:hover{border-color:var(--magenta-light); color:var(--magenta-light);}
+  .cidade-tag.featured:hover{color:var(--white); background:var(--magenta-deep);}
+
+  .verificador{
+    background:rgba(226,0,116,0.08);
+    border:1px solid rgba(226,0,116,0.2);
+    border-radius:24px;
+    padding:40px;
+    backdrop-filter:blur(10px);
+  }
+  .verif-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    color:var(--magenta-light);
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .verif-title{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:24px;
+    letter-spacing:-0.02em;
+  }
+  .verif-input{
+    display:flex;
+    gap:0;
+    background:var(--bg);
+    border-radius:100px;
+    padding:6px;
+    margin-bottom:16px;
+  }
+  .verif-input input{
+    flex:1;
+    padding:14px 20px;
+    border:none;
+    background:transparent;
+    font-size:15px;
+    font-family:inherit;
+    color:var(--ink);
+    outline:none;
+  }
+  .verif-input input::placeholder{color:var(--muted);}
+  .verif-btn{
+    background:var(--magenta);
+    color:var(--white);
+    border:none;
+    padding:14px 24px;
+    border-radius:100px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    transition:background 0.2s;
+  }
+  .verif-btn:hover{background:var(--magenta-deep);}
+  .verif-help{
+    font-size:12px;
+    color:#9D8A92;
+  }
+
+  /* PARCEIROS */
+  .parceiros{
+    background:var(--bg-alt);
+    padding:80px 40px;
+    margin:0;
+  }
+  .parceiros-inner{
+    max-width:1440px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .parceiros-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:32px;
+  }
+  .parceiros-logos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:80px;
+    flex-wrap:wrap;
+  }
+  .parceiro-logo{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:24px;
+    font-weight:600;
+    color:var(--ink-2);
+    letter-spacing:-0.02em;
+    opacity:0.5;
+    transition:all 0.3s;
+  }
+  .parceiro-logo:hover{opacity:1; color:var(--magenta);}
+
+  /* CTA FINAL */
+  .cta-final{
+    padding:140px 40px;
+    max-width:1440px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .cta-headline{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:clamp(48px, 7vw, 110px);
+    font-weight:500;
+    line-height:0.95;
+    letter-spacing:-0.04em;
+    max-width:1100px;
+    margin:0 auto 40px;
+  }
+  .cta-headline em{
+    font-style:italic;
+    color:var(--magenta);
+    font-weight:400;
+  }
+  .cta-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:40px;
+  }
+  .btn-large{
+    padding:18px 32px;
+    font-size:15px;
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--magenta-darker);
+    color:var(--bg);
+    padding:80px 40px 32px;
+    position:relative;
+    overflow:hidden;
+  }
+  footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--magenta), transparent);
+  }
+  .footer-inner{max-width:1440px; margin:0 auto; position:relative;}
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:60px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:32px;
+    font-weight:600;
+    letter-spacing:-0.03em;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .footer-brand .logo-dot{box-shadow:0 0 0 4px rgba(226,0,116,0.25);}
+  .footer-tagline{
+    color:#D4C4CC;
+    font-size:14px;
+    max-width:280px;
+    line-height:1.5;
+  }
+  .footer-col h4{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--magenta-light);
+    margin-bottom:20px;
+    font-weight:500;
+  }
+  .footer-col ul{list-style:none;}
+  .footer-col li{margin-bottom:12px;}
+  .footer-col a{
+    color:#D4C4CC;
+    text-decoration:none;
+    font-size:14px;
+    transition:color 0.2s;
+  }
+  .footer-col a:hover{color:var(--magenta-light);}
+  .footer-bottom{
+    padding-top:32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    color:#9D8A92;
+    font-size:12px;
+  }
+  .footer-bottom .legal{
+    display:flex;
+    gap:24px;
+  }
+  .footer-bottom a{color:#9D8A92; text-decoration:none;}
+  .footer-bottom a:hover{color:var(--magenta-light);}
+
+  /* RESPONSIVO */
+  @media (max-width:900px){
+    nav{padding:14px 20px;}
+    .nav-links{display:none;}
+    .hero{padding:120px 20px 60px;}
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .hero-tag{position:static; display:inline-flex; align-items:center; margin-bottom:20px;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);}
+    .stat{border-bottom:1px solid var(--line);}
+    .section{padding:80px 20px;}
+    .section-header{grid-template-columns:1fr; gap:24px;}
+    .solucoes-grid{grid-template-columns:1fr;}
+    .case-feature{padding:48px 28px; margin:0 20px;}
+    .case-grid{grid-template-columns:1fr; gap:40px;}
+    .diff-grid{grid-template-columns:1fr;}
+    .cobertura{padding:80px 20px;}
+    .cobertura-grid{grid-template-columns:1fr; gap:40px;}
+    .footer-top{grid-template-columns:1fr 1fr; gap:32px;}
+    .stadium-label-big{font-size:64px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-dot"></span>
+      use<span style="opacity:0.4">·</span>telecom
+    </a>
+    <ul class="nav-links">
+      <li><a href="#solucoes">Soluções</a></li>
+      <li><a href="#barradao">Cases</a></li>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="#">Empresarial</a></li>
+      <li><a href="#">Suporte</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost">Área do cliente</a>
+      <a href="#contratar" class="btn btn-magenta">Assine →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">
+    <span class="pulse"></span>
+    Backbone próprio · 2.800 km de fibra · Bahia + Sergipe
+  </div>
+
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:32px;">Desde 2014 conectando a Bahia</div>
+      <h1 class="display hero-headline">
+        Conectividade<br>
+        que sustenta<br>
+        <em>o que não pode parar.</em>
+      </h1>
+    </div>
+
+    <div class="hero-meta">
+      <p class="hero-desc">
+        Fibra óptica 100% própria, backbone com interconexões PTT-BA e PTT-SP, e infraestrutura projetada para condomínios, empresas e os maiores eventos do estado. Salvador, Lauro de Freitas, Camaçari, Porto Seguro, Morro de São Paulo e mais.
+      </p>
+      <div class="hero-actions">
+        <a href="#contratar" class="btn btn-magenta btn-large">Verifique cobertura</a>
+        <a href="#solucoes" class="btn btn-ghost btn-large">Conheça as soluções</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO STATS -->
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">20<sup>+</sup></div>
+      <div class="stat-label">Anos no mercado</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2.800<sup>km</sup></div>
+      <div class="stat-label">Fibra óptica própria</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">48</div>
+      <div class="stat-label">Cidades atendidas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99,9<sup>%</sup></div>
+      <div class="stat-label">SLA disponibilidade</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÕES -->
+<section class="section" id="solucoes">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom:16px;">04 verticais</div>
+      <h2 class="display section-title">
+        Uma rede.<br>
+        <em>Quatro mundos.</em>
+      </h2>
+    </div>
+    <p class="section-desc">
+      Da casa do torcedor à torcida inteira no estádio. Da live do escritório ao evento internacional com 15 mil pessoas conectadas. A Use opera infraestrutura para quem não pode cair.
+    </p>
+  </div>
+
+  <div class="solucoes-grid">
+    <div class="solucao">
+      <div>
+        <div class="solucao-num">01 / Residencial</div>
+        <h3 class="solucao-title">Use Casa</h3>
+        <p class="solucao-desc">Fibra simétrica de até 1 Gbps, Wi-Fi 6 entregue em casa, Use TV com Globoplay incluído e suporte 24/7 baseado em Salvador.</p>
+        <ul class="solucao-features">
+          <li>Fibra GPON</li>
+          <li>Wi-Fi 6</li>
+          <li>Use TV</li>
+          <li>Globoplay</li>
+        </ul>
+      </div>
+      <div class="solucao-arrow">→</div>
+    </div>
+
+    <div class="solucao">
+      <div>
+        <div class="solucao-num">02 / Condomínios</div>
+        <h3 class="solucao-title">Use Condomínio</h3>
+        <p class="solucao-desc">Projeto dedicado para condomínios residenciais e comerciais. Ponto óptico até a unidade, redundância de backbone e gestão centralizada.</p>
+        <ul class="solucao-features">
+          <li>FTTH</li>
+          <li>Síndico</li>
+          <li>Gestão técnica</li>
+          <li>SLA</li>
+        </ul>
+      </div>
+      <div class="solucao-arrow">→</div>
+    </div>
+
+    <div class="solucao">
+      <div>
+        <div class="solucao-num">03 / Empresarial</div>
+        <h3 class="solucao-title">Use Empresa</h3>
+        <p class="solucao-desc">Link dedicado com 100% upload e download, IPs fixos, MPLS multissite, telefonia VoIP e SLA contratual com porta dedicada e SLA financeiro.</p>
+        <ul class="solucao-features">
+          <li>Link dedicado</li>
+          <li>MPLS</li>
+          <li>IP fixo</li>
+          <li>VoIP</li>
+        </ul>
+      </div>
+      <div class="solucao-arrow">→</div>
+    </div>
+
+    <div class="solucao">
+      <div>
+        <div class="solucao-num">04 / Eventos</div>
+        <h3 class="solucao-title">Use Eventos</h3>
+        <p class="solucao-desc">Conectividade temporária ou permanente para estádios, festivais, feiras e eventos corporativos. Capacidade de 15 mil conexões simultâneas testada no Wi-Fi do Leão.</p>
+        <ul class="solucao-features">
+          <li>Wi-Fi 6/7</li>
+          <li>200 Gbps</li>
+          <li>Estádios</li>
+          <li>Festivais</li>
+        </ul>
+      </div>
+      <div class="solucao-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE WI-FI DO LEÃO -->
+<section class="case-feature" id="barradao">
+  <div class="case-bg"></div>
+  <div class="case-grid">
+    <div>
+      <div class="case-eyebrow">Caso · Wi-Fi do Leão · Estádio Barradão</div>
+      <h2 class="case-title">
+        Conectamos<br>
+        <em>15 mil torcedores</em><br>
+        ao mesmo tempo.
+      </h2>
+      <p class="case-desc">
+        Em parceria com o Esporte Clube Vitória, a Use Telecom projetou e opera a maior infraestrutura de Wi-Fi de estádio do Nordeste. Mais de 70 access points Wi-Fi 6/7, backbone óptico de 200 Gbps e cobertura de 99% do Barradão. Receita compartilhada 50/50 com o clube — modelo replicável para qualquer arena.
+      </p>
+      <a href="https://wifidoleao.com.br" class="btn btn-magenta btn-large">Ver o caso completo →</a>
+
+      <div class="case-stats">
+        <div>
+          <div class="case-stat-num">200<small style="font-size:18px;"> Gbps</small></div>
+          <div class="case-stat-label">Backbone óptico dedicado</div>
+        </div>
+        <div>
+          <div class="case-stat-num">70<small style="font-size:18px;">+</small></div>
+          <div class="case-stat-label">APs Wi-Fi 6/7 no estádio</div>
+        </div>
+        <div>
+          <div class="case-stat-num">15k</div>
+          <div class="case-stat-label">Conexões simultâneas</div>
+        </div>
+        <div>
+          <div class="case-stat-num">99<small style="font-size:18px;">%</small></div>
+          <div class="case-stat-label">Cobertura do estádio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-visual">
+      <div class="stadium-label-big">
+        BAR<br>RA<br>DÃO
+        <small>Estádio Manoel Barradas</small>
+      </div>
+      <div class="stadium-label">71 access points · live</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS TÉCNICOS -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="eyebrow" style="margin-bottom:16px;">Por que Use</div>
+      <h2 class="display section-title">
+        O que está<br>
+        <em>por trás do sinal.</em>
+      </h2>
+    </div>
+    <p class="section-desc">
+      Quando a internet cai, o que sustenta sua operação é a engenharia. A Use opera com infraestrutura própria de ponta a ponta — sem revenda, sem terceirização do que importa.
+    </p>
+  </div>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-icon-wrap"><span class="diff-icon">⬢</span></div>
+      <h3 class="diff-title">Backbone próprio</h3>
+      <p class="diff-desc">2.800 km de fibra óptica entre Bahia e Sergipe, tecnologia GPON ponta a ponta, com investimento de R$ 10M na atualização Nokia. Cada PoP atende até 30 mil usuários.</p>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-icon-wrap"><span class="diff-icon">◈</span></div>
+      <h3 class="diff-title">Interconexões PTT</h3>
+      <p class="diff-desc">Conectados aos pontos de troca de tráfego PTT-BA e PTT-SP, além de upstreamings nacionais e internacionais. Latência baixa para qualquer destino.</p>
+    </div>
+
+    <div class="diff-card">
+      <div class="diff-icon-wrap"><span class="diff-icon">◉</span></div>
+      <h3 class="diff-title">Operação local</h3>
+      <p class="diff-desc">NOC, suporte técnico e equipe de campo baseados em Salvador. Quando o problema acontece às 3h da manhã, quem responde é alguém que já está na cidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="cobertura" id="cobertura">
+  <div class="cobertura-inner">
+    <div class="cobertura-grid">
+      <div>
+        <div class="case-eyebrow">Onde a Use chega</div>
+        <h2 class="cobertura-title">
+          De Salvador<br>
+          a <em>Morro de São Paulo.</em>
+        </h2>
+        <p class="cobertura-desc">
+          48 cidades atendidas em duas capitais e principais regiões da Bahia e Sergipe. Em expansão contínua — verifique se a Use já chegou no seu endereço.
+        </p>
+
+        <div class="cidades">
+          <span class="cidade-tag featured">Salvador</span>
+          <span class="cidade-tag featured">Lauro de Freitas</span>
+          <span class="cidade-tag featured">Camaçari</span>
+          <span class="cidade-tag featured">Porto Seguro</span>
+          <span class="cidade-tag">Morro de São Paulo</span>
+          <span class="cidade-tag">Vitória da Conquista</span>
+          <span class="cidade-tag">Aracaju</span>
+          <span class="cidade-tag">Garapua</span>
+          <span class="cidade-tag">Gamboa</span>
+          <span class="cidade-tag">Feira de Santana</span>
+          <span class="cidade-tag">Ilhéus</span>
+          <span class="cidade-tag">+ 37 cidades</span>
+        </div>
+      </div>
+
+      <div class="verificador">
+        <div class="verif-label">→ Cobertura</div>
+        <h3 class="verif-title">Verifique se a Use atende seu endereço</h3>
+        <div class="verif-input">
+          <input type="text" placeholder="Digite seu CEP">
+          <button class="verif-btn">Verificar</button>
+        </div>
+        <p class="verif-help">Ou ligue: Salvador (71) 3599-1000 · Porto Seguro (73) 3191-1800</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCEIROS -->
+<section class="parceiros">
+  <div class="parceiros-inner">
+    <div class="parceiros-label">Parceiros que confiam na nossa rede</div>
+    <div class="parceiros-logos">
+      <div class="parceiro-logo">EC VITÓRIA</div>
+      <div class="parceiro-logo">Globoplay</div>
+      <div class="parceiro-logo">Nokia</div>
+      <div class="parceiro-logo">Campus Party</div>
+      <div class="parceiro-logo">Wi-Fi do Leão</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contratar">
+  <div class="eyebrow" style="justify-content:center; margin-bottom:32px;">Vem ser Use</div>
+  <h2 class="cta-headline">
+    Sua próxima conexão<br>
+    pode ser <em>a última</em><br>
+    que você troca.
+  </h2>
+  <div class="cta-actions">
+    <a href="#" class="btn btn-magenta btn-large">Quero ser cliente Use</a>
+    <a href="#" class="btn btn-ghost btn-large">Falar com um consultor</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <span class="logo-dot"></span>
+          use·telecom
+        </div>
+        <p class="footer-tagline">Conectividade que sustenta o que não pode parar. Bahia · Sergipe · desde 2014.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <ul>
+          <li><a href="#">Use Casa</a></li>
+          <li><a href="#">Use Condomínio</a></li>
+          <li><a href="#">Use Empresa</a></li>
+          <li><a href="#">Use Eventos</a></li>
+          <li><a href="#">Use TV</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresarial</h4>
+        <ul>
+          <li><a href="#">Link Dedicado</a></li>
+          <li><a href="#">Rede MPLS</a></li>
+          <li><a href="#">ISP / Trânsito</a></li>
+          <li><a href="#">Telefonia VoIP</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#">Salvador (71) 3599-1000</a></li>
+          <li><a href="#">Porto Seguro (73) 3191-1800</a></li>
+          <li><a href="#">comercial@usetelecom.com.br</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Cliente</h4>
+        <ul>
+          <li><a href="#">Central do assinante</a></li>
+          <li><a href="#">Suporte 24/7</a></li>
+          <li><a href="#">2ª via boleto</a></li>
+          <li><a href="#">Contratos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Use Comunicações e Telecomunicações LTDA · CNPJ 29.568.281/0001-65</div>
+      <div class="legal">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Cookies</a>
+        <a href="#">LGPD</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
